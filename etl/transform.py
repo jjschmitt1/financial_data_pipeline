@@ -1,9 +1,13 @@
 import pandas as pd
 from datetime import datetime
 import numpy as np
+from dotenv import load_dotenv
+import os
 
-load_csv_path = "../data_sources/historical_sources/sp100_1yr_data.csv"
-save_csv_path = "../data_sources/historical_sources/sp100_transformed_1yr_data.csv"
+load_dotenv()
+
+load_csv_path = os.getenv("ORIGINAL_CSV")
+save_csv_path = os.getenv("TRANSFORMED_CSV")
 
 df = pd.read_csv(load_csv_path)
 

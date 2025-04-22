@@ -3,9 +3,13 @@ from bs4 import BeautifulSoup
 import requests
 import pandas as pd
 from datetime import datetime, timedelta
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 url="https://en.wikipedia.org/wiki/S%26P_100"
-csv_path="../data_sources/historical_sources/sp100_1yr_data.csv"
+csv_path = os.getenv("ORIGINAL_CSV")
 df_attrs = ["ticker", "company_name"]
 
 
@@ -77,5 +81,3 @@ final_df = final_df.iloc[:, :-2]
 final_df = pd.concat([last_cols, final_df], axis=1)
 
 final_df.to_csv(csv_path)
-
-print("Data saved")
