@@ -1,7 +1,11 @@
 import duckdb
+from dotenv import load_dotenv
+import os
 
-transformed_csv_path = "../data_sources/historical_sources/sp100_transformed_1yr_data.csv"
-duckdb_save_path = "../analytics/analytics.duckdb"
+load_dotenv()
+
+transformed_csv_path = os.getenv("TRANSFORMED_CSV")
+duckdb_save_path = os.getenv("DUCKDB_DB")
 
 # establish connection to db at the given path
 conn = duckdb.connect(duckdb_save_path)
