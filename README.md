@@ -8,6 +8,8 @@ Once the data is in the csv, I load it into a new datafram in a seperate script,
 
 This csv is then loaded into SQLite for storage and DuckDB for querying.
 
+** Next Steps **
+To add a cron job, I will run into errors  on weekdays when the market isn't open. I need to add a check to make sure that data is only input when the date from the previous todays_stock_data.csv is different from the one that is currently being pulled. Then stop the job if they are the same and raise an error message. There will be no change needed, as that day will just be forgotten which won't matter because no trading day is missed.
 
 DuckDB database:
   - 'sp100_daily_prices' table, containing the following columns
