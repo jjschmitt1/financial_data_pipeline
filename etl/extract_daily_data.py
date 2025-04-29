@@ -11,14 +11,14 @@ conn = duckdb.connect(os.getenv("DUCKDB_DB"))
 
 todays_date = datetime.date.today()
 
-conn.execute("SELECT DISTINCT(ticker) FROM latest_prices ORDER BY ticker")
+conn.execute("SELECT DISTINCT(ticker, company_name) FROM latest_prices ORDER BY ticker")
 
 tickers_raw = conn.fetchall()
 
-tickers = list(map(lambda tick: tick[0], tickers_raw))
+companies = list(map(lambda company: {'ticker': company[0][0], 'company_name': company[0][1]}, tickers_raw))
 
 # sanity check to make sure we get all tickers
-if len(tickers) != 101:
+if len(companies) != 101:
     print("Error fetching tickers from 'latest_prices' view!")
     exit(1)
 
@@ -27,15 +27,21 @@ start_time = end_time - datetime.timedelta(days=46)
 
 stock_data = []
 
-for ticker in tickers:
+for company in companies:
+    ticker = company['ticker']
+    company_name = company['company_name']
+
     print(f"Downloading data for {ticker}:")
     df = yf.download(tickers=ticker, start=start_time.strftime("%Y-%m-%d"), end=end_time.strftime("%Y-%m-%d"), multi_level_index=False)
 
     df.reset_index(inplace=True)
 
     df['ticker'] = ticker
+    df['company_name'] = company_name
 
     stock_data.append(df)
+    
+
 
 final_df = pd.concat(stock_data, ignore_index=True)
 final_df.rename(columns={"Date": "date", "Close": "close", "High": "high",

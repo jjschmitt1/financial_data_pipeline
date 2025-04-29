@@ -13,6 +13,20 @@ conn = duckdb.connect(duckdb_save_path)
 # create the table
 conn.execute(f"""
              CREATE OR REPLACE TABLE sp100_daily_prices AS 
+             SELECT
+                ticker,
+                company_name,
+                date,
+                close,
+                high,
+                low,
+                open,
+                volume,
+                daily_return_pct,
+                intraday_return_pct,
+                7day_ma,
+                30day_ma,
+                day_of_week
                 FROM read_csv('{transformed_csv_path}', HEADER=TRUE);
              """)
 
