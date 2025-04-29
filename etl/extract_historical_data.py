@@ -42,7 +42,7 @@ df = pd.DataFrame()
 
 # get last year of data
 end_time = datetime.now()
-start_time = end_time - timedelta(days=365)
+start_time = end_time - timedelta(days=30)
 
 all_data = []
 

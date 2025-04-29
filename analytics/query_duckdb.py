@@ -6,7 +6,7 @@ load_dotenv()
 
 conn = duckdb.connect(os.getenv("DUCKDB_DB"))
 
-conn.execute("SELECT ticker, close FROM latest_prices ORDER BY ticker LIMIT 10;")
+conn.execute("SELECT * FROM sp100_daily_prices ORDER BY date DESC LIMIT 10;")
 print(conn.fetchall())
 
 conn.close()
