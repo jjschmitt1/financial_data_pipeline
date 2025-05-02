@@ -40,7 +40,21 @@ for company in companies:
     df['company_name'] = company_name
 
     stock_data.append(df)
-    
+
+
+# check to make sure that the most recent date in the db is different than the data we just fetched to avoid duplication in the db
+last_date_in_db = conn.execute("""
+    SELECT
+        date
+    FROM
+        sp100_daily_prices
+    ORDER BY date DESC
+    LIMIT 1;
+    """).fetchone()[0]
+
+
+
+# exit with code 2 if duplicate data is detected
 
 
 final_df = pd.concat(stock_data, ignore_index=True)
@@ -61,7 +75,10 @@ final_df = final_df.sort_values(by='ticker')
 final_df.reset_index(inplace=True)
 final_df = final_df.drop("index", axis=1)
 
-final_df.to_csv(os.getenv("DAILY_DATA_CSV"))
+date_in_daily = final_df['date'].iloc[0].date()
 
+if last_date_in_db == date_in_daily: exit(2)
+
+final_df.to_csv(os.getenv("DAILY_DATA_CSV"))
 
 conn.close()

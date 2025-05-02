@@ -6,8 +6,15 @@ load_dotenv()
 
 conn = duckdb.connect(os.getenv("DUCKDB_DB"))
 
-conn.execute("SELECT * FROM sp100_daily_prices ORDER BY date DESC LIMIT 10;")
+last_date_in_db = conn.execute("""
+    SELECT
+        date
+    FROM
+        sp100_daily_prices
+    ORDER BY date DESC
+    LIMIT 1;
+    """).fetchone()[0]
 
-print(conn.fetchall())
+print(last_date_in_db)
 
 conn.close()

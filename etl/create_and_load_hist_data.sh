@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# don't need to log this, only gets run once at start of project and then never gets run again 
+# unless it needs to be reinstantiated
+
 # get companies from wikipedia and historical data from yfinance
 python3.12 extract_historical_data.py
 if [ $? -ne 0 ]; then
