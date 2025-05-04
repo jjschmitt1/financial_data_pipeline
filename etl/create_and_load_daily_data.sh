@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # must be run in etl folder
-log_file="../logs/daily_update.log"
+log_file="/Users/johnschmitt/code/finance_data_pipeline/logs/daily_update.log"
 
 log() {
   echo "[$(date)]: $1" >> "$log_file"

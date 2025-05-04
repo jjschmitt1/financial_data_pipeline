@@ -2,7 +2,7 @@ import duckdb
 from dotenv import load_dotenv
 import os
 
-load_dotenv()
+load_dotenv(dotenv_path="/Users/johnschmitt/code/finance_data_pipeline/.env")
 
 conn = duckdb.connect(os.getenv("DUCKDB_DB"))
 
