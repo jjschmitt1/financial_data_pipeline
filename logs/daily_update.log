@@ -4,3 +4,9 @@
 [Fri May  2 16:59:46 CDT 2025]: Successfully loaded daily data into sqlite
 [Fri May  2 16:59:46 CDT 2025]: 'create_and_load_daily_data' completed
 [Fri May  2 17:00:22 CDT 2025]: Duplicate data detected from 'extract_daily_data'
+[Sun May  4 16:53:50 CDT 2025]: Daily data extracted
+[Sun May  4 16:53:50 CDT 2025]: Error loading daily data into duckdb
+[Sun May  4 16:54:40 CDT 2025]: Daily data extracted
+[Sun May  4 16:54:40 CDT 2025]: Error loading daily data into duckdb
+[Sun May  4 23:20:19 CDT 2025]: Duplicate data detected from 'extract_daily_data'
+[Sun May  4 23:20:19 CDT 2025]: Duplicate data detected from 'extract_daily_data'

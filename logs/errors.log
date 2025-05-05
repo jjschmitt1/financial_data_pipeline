@@ -10,3 +10,9 @@
 /Users/johnschmitt/code/finance_data_pipeline/etl/create_and_load_daily_data.sh: line 7: ../logs/daily_update.log: No such file or directory
 /Users/johnschmitt/code/finance_data_pipeline/etl/create_and_load_daily_data.sh: line 25: python3.12: command not found
 /Users/johnschmitt/code/finance_data_pipeline/etl/create_and_load_daily_data.sh: line 7: ../logs/daily_update.log: No such file or directory
+/Users/johnschmitt/code/finance_data_pipeline/etl/create_and_load_daily_data.sh: line 11: python3.12: command not found
+/Users/johnschmitt/code/finance_data_pipeline/etl/create_and_load_daily_data.sh: line 25: python3.12: command not found
+/Users/johnschmitt/code/finance_data_pipeline/etl/create_and_load_daily_data.sh: line 11: python3.12: command not found
+/Users/johnschmitt/code/finance_data_pipeline/etl/create_and_load_daily_data.sh: line 25: python3.12: command not found
+/Library/Frameworks/Python.framework/Versions/3.12/Resources/Python.app/Contents/MacOS/Python: can't open file '//extract_daily_data.py': [Errno 2] No such file or directory
+/Library/Frameworks/Python.framework/Versions/3.12/Resources/Python.app/Contents/MacOS/Python: can't open file '//extract_daily_data.py': [Errno 2] No such file or directory

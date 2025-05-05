@@ -2,27 +2,28 @@
 
 # must be run in etl folder
 log_file="/Users/johnschmitt/code/finance_data_pipeline/logs/daily_update.log"
+py_path="/Library/Frameworks/Python.framework/Versions/3.12/bin/python3.12"
 
 log() {
   echo "[$(date)]: $1" >> "$log_file"
 }
 
 # get daily data from yfinance
-python3.12 extract_daily_data.py
+$py_path extract_daily_data.py
 extract_exit_code=$?
 
 if [ $extract_exit_code -eq 0 ]; then
-  log "Error extracting daily data"
+  log "Daily data extracted"
   exit 1
 elif [ $extract_exit_code -eq 2 ]; then
   log "Duplicate data detected from 'extract_daily_data'"
   exit 1
 else
-  log "Daily data extracted"
+  log "Error extracting daily data"
 fi
 
 # load data into duckdb
-python3.12 load_duck.py
+$py_path load_duck.py
 if [ $? -ne 0 ]; then
   log "Error loading daily data into duckdb"
   exit 1
@@ -31,7 +32,7 @@ else
 fi
 
 # load data into sqlite
-python3.12 load_sqlite.py
+$py_path load_sqlite.py
 if [ $? -ne 0 ]; then
   log "Error loading into sqlite"
   exit 1
