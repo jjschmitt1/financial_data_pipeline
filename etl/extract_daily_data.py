@@ -77,7 +77,7 @@ final_df = final_df.drop("index", axis=1)
 
 date_in_daily = final_df['date'].iloc[0].date()
 
-if last_date_in_db == date_in_daily: exit(2)
+if last_date_in_db == date_in_daily: exit(70)
 
 final_df.to_csv(os.getenv("DAILY_DATA_CSV"))
 
